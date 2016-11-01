@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Tutorial</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    This is a webpage!
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Main extends React.Component {
+
+            render() {
+
+                return (
+                    <div>
+                        <h2>This is a React component</h2>
+
+                        <Person />
+                        <Person />
+                        <Person />
+
+
+                    </div>
+                )
+            }
+        }
+
+        class Person extends React.Component {
+
+            render() {
+
+                return (
+                    <div>
+                        <h2>Name: Rick Lee</h2>
+                        <p>Age: 18</p>
+                        <PersonForm />
+                    </div>
+                )
+            }
+        }
+
+        class PersonForm extends React.Component {
+
+            render() {
+
+                return (
+                    <div>
+                        <input type="text" placeholder="Input Name" />
+                        <input type="text" placeholder="Input Age" />
+                        <input type="submit" value="Submit" />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Main />, document.getElementById('app'));
+    </script>
+</body>
+</html>
