@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Tutorial</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    This is a webpage!
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Main extends React.Component {
+
+            constructor() {
+
+                super();
+
+                this.state = {
+                    name: "Rick", age: 18
+                }
+
+                this.onPersonChanged = this.onPersonChanged.bind(this)
+            }
+
+            onPersonChanged(name, age) {
+
+                this.setState({name:name,age:age})
+            }
+
+            render() {
+
+                return (
+                    <div>
+                        <h2>This is a React component</h2>
+                        <Person name={this.state.name} age={this.state.age}/>
+
+                        <PersonForm onPersonChanged={this.onPersonChanged} />
+
+                    </div>
+                )
+            }
+        }
+
+        class Person extends React.Component {
+
+            render() {
+
+                return (
+                    <div>
+                        <h2>Name: {this.props.name}</h2>
+                        <p>Age: {this.props.age}</p>
+                    </div>
+                )
+            }
+        }
+
+        class PersonForm extends React.Component {
+
+            constructor(props) {
+
+                super(props)
+
+                this.state = {
+                    nameInput: "", ageInput: ""
+                }
+
+                this.onNameChanged = this.onNameChanged.bind(this)
+                this.onAgeChanged = this.onAgeChanged.bind(this)
+                this.onSubmit = this.onSubmit.bind(this)
+
+            }
+
+            onNameChanged(event) {
+                this.setState({nameInput:event.target.value})
+            }
+
+            onAgeChanged(event) {
+                this.setState({ageInput:event.target.value})
+            }
+
+            onSubmit(event) {
+                this.props.onPersonChanged(this.state.nameInput, this.state.ageInput)
+            }
+
+            render() {
+
+                return (
+                    <div>
+                        <input type="text" placeholder="Input Name" value={this.state.nameInput} onChange={this.onNameChanged}/>
+                        <input type="text" placeholder="Input Age" value={this.state.ageInput} onChange={this.onAgeChanged}/>
+                        <button onClick={this.onSubmit}>Submit</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Main />, document.getElementById('app'));
+    </script>
+</body>
+</html>
