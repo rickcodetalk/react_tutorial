@@ -1,0 +1,4 @@
+{
+    "env": "production",
+    "serverUrl": "http://prd.rickcodetalk.net"
+}
